@@ -23,5 +23,5 @@ export function useRoutes(createHistory) {
     document.body.removeChild(element)
   }
 
-  return createUseScroll(updateScroll, start, stop)(createHistory)
+  return createUseScroll(() => {}, updateScroll, start, stop)(createHistory)
 }

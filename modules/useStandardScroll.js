@@ -25,6 +25,14 @@ export default function useStandardScroll(createHistory) {
     return state.scrollPosition
   }
 
+  // `history` will invoke this listener when doesn't `updateScroll` to update
+  // `currentKey` and set previous state
+  function updateState({ key }) {
+    const state = readState(currentKey)
+    saveState(key, state)
+    currentKey = key
+  }
+
   // `history` will invoke this listener synchronously, so `currentKey` will
   // always be defined.
   function updateScroll({ key }) {
@@ -89,5 +97,5 @@ export default function useStandardScroll(createHistory) {
     unlistenBefore()
   }
 
-  return createUseScroll(updateScroll, start, stop)(createHistory)
+  return createUseScroll(updateState, updateScroll, start, stop)(createHistory)
 }

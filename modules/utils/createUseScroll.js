@@ -2,7 +2,7 @@ function defaultShouldUpdateScroll() {
   return true
 }
 
-export default function createUseScroll(updateScroll, start, stop) {
+export default function createUseScroll(updateState, updateScroll, start, stop) {
   return function (createHistory) {
     return function (options = {}) {
       const {
@@ -46,6 +46,8 @@ export default function createUseScroll(updateScroll, start, stop) {
         listeners.forEach(listener => listener(location))
         if (shouldUpdateScroll(oldLocation, currentLocation)) {
           updateScroll(location)
+        } else {
+          updateState(location)
         }
       }
 

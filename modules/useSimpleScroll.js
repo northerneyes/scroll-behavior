@@ -25,5 +25,5 @@ export default function useSimpleScroll(createHistory) {
     window.scrollTo(0, 0)
   }
 
-  return createUseScroll(updateScroll)(createHistory)
+  return createUseScroll(() => {}, updateScroll)(createHistory)
 }

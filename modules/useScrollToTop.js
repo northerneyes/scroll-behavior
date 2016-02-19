@@ -37,5 +37,5 @@ export default function useScrollToTop(createHistory) {
     }
   }
 
-  return createUseScroll(updateScroll, start, stop)(createHistory)
+  return createUseScroll(() => {}, updateScroll, start, stop)(createHistory)
 }
